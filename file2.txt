@@ -3,6 +3,4 @@ this is my file2 for git course
 adding more content to file two
 
 
-add another marketing message section
-
-add footer note
+2025 footer note added
