@@ -1,0 +1,150 @@
+Git is distributed version control system that tracks versions of files. 
+It is often used to control source code by programmers collaboratively developing software.
+Git is software. Github is web based hosting service to host Git
+version control system -> track files for changes (like checkpointing)
+
+git --version  -> check version of git
+
+
+these commands set your git identity (email and name) globally on your system
+why? : every commit in git stores your name and email to identify who made the commit and link commits to github account
+git config --global user.name "userName"
+git config --global user.email "email address"
+
+the below command shows all git configuration settings currently applied
+git config --list
+
+git status -> shows the current state of your repo (current branch, changes staged for commit, changes not stages, untracked files)
+
+ls -la -> will also show hidden folders
+
+git init -> adds hidden folder .git and tracking of this folder starts
+
+flow -> write, add, commit
+
+
+usual steps or flow used in git
+choose a working directory (project folder where you create and modify files)
+git add (moves selected changes to staging area) ("I want these changes to be included in next commit")
+staging area (temporary space where changes are prepared before commiting) (avoid commiting unwanted files)
+git commit (saves changes permanently in local git repo)(every commit has unique is and stores version history)
+repo (stored inside .git folder) (contains all commits, branch, history)
+git push (uploads commits to github/ remote repo)
+github
+
+git add .  -> adds all files to staging area
+git add file1.txt file2.txt and so on file names -> adds selected files to staging area
+
+git commit -m "message" 
+
+git log  -> show complete detailed commit history of repo
+git log --oneline -> show short, compact version of commit history
+
+atomic commit -> commit that contains only one complete, meaningful change. (One commit = one logical change)
+
+.gitignore -> A file used to tell Git which files/folders to NOT track.avoid commiting .env, node_modules/, build files etc
+.gitkeep -> Git does NOT track empty folders.So if you want to keep a folder like: uploads/ , then add uploads/.gitkeep
+
+Branches in git
+branch is a separate line of development in your project.
+branch lets you work on features or fixes without affecting the main code.
+Head in git -> pointer pointing to main branch
+git branch -> see all branches
+Branch = making a copy of your project to experiment, then merging back when done
+
+git branch bug-fix  (creates new branch named bug-fix)
+git switch bug-fix (moves head pointer to bug-fix branch)
+git switch master 
+git switch -c dark-mode (switch to new branch dark-mode (creates new branch if not already made))
+git checkout orange-mode (works same as switch (does not create if not already present))
+
+
+git checkout master
+git merge bug-fix  (merge bug-fix with present branch)
+
+
+git branch -m <old branch name> <new banch name>  (rename a branch)
+git branch -d <branch name>  (delete a branch)
+
+merge conflict
+happens when git cannot automatically combine changes from two branches
+when? : when two branches changed the same oart of same file and git doesnt know which one to keep
+example:
+<<<<<<< HEAD
+Hello World
+=======
+Hello Git
+>>>>>>> bug-fix
+HEAD → current branch
+bug-fix → incoming branch
+
+how to fix:
+git status (will show files with conflict)
+resolve manually (choose one or combine)
+git add file.txt
+git commit (mark as resolved)
+
+if completely messed up -> abort the merge
+git merge --abort
+
+
+git diff, stash and tag
+
+git diff --staged
+git diff <branch name1> <branch name2> (shows difference with 2 branches)
+git diff <branch name1>..<branch name2>
+
+
+git diff master bug-fix
+output:
+diff --git a/file1.txt b/file1.txt
+Means:
+comparing file1.txt
+a/ → old version (master)
+b/ → new version (bug-fix)
+
+@@ -1,4 +1,2 @@
+-1,4 → old file had 4 lines starting from line 1
++1,2 → new file has 2 lines starting from line 1
+
+Red lines → removed
+Green lines → added
+White = same
+
+
+
+git stash
+Issue:
+PS C:\Users\ASUS\Documents\gitCourse\one> git checkout bug-fix
+error: Your local changes to the following files would be overwritten by checkout:
+        file1.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+PS C:\Use
+
+fix:
+git stash
+git stash temporarily saves your uncommitted changes (both staged + unstaged)
+so you can switch branches or pull code without committing.
+
+git stash → Temporarily saves your current uncommitted changes and cleans your working directory.
+git stash list → Shows all saved stashes.
+git stash apply → Applies the latest stash without deleting it.
+git stash apply stash@{n} → Applies a specific stash by its index.
+git stash branch <branch-name> stash@{n} → Creates a new branch and applies the specified stash to it.
+git stash pop → Applies the latest stash and removes it from the stash list.
+git stash drop → Deletes a specific stash.
+git stash clear → Deletes all stashes permanently.
+
+
+
+tag:
+git tag is used to mark specific commits with a label (usually for versions like v1.0).
+git tag = assign a meaningful name to a commit (e.g., version release)
+
+git tag → Lists all tags in the repository
+git tag v1.0 → Creates a lightweight tag on current commit
+git tag -a v1.0 -m "version 1.0" → Creates an annotated tag with message
+git tag -d v1.0 → Deletes a tag locally
+git push origin v1.0 → Pushes a specific tag to GitHub
+git push origin --tags → Pushes all tags to GitHub
