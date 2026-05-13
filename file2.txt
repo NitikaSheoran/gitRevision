@@ -3,11 +3,9 @@ this is my file2 for git course
 adding more content to file two
 
 
-<<<<<<< HEAD
+
 add another marketing message section
 
 add footer note
 2024 is coming
-=======
-2025 footer note added
->>>>>>> bug-fix
+
