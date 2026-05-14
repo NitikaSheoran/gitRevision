@@ -148,3 +148,21 @@ git tag -a v1.0 -m "version 1.0" → Creates an annotated tag with message
 git tag -d v1.0 → Deletes a tag locally
 git push origin v1.0 → Pushes a specific tag to GitHub
 git push origin --tags → Pushes all tags to GitHub
+
+
+git rebase:
+
+
+
+
+
+
+git remote -v → Shows all remote repositories linked to your local repo (with URLs).
+git remote add origin <repo link> → Connects your local repo to a remote repo named origin.
+git push origin main → Pushes your local main branch to the remote origin.
+
+git push -u origin main → Pushes branch and sets it as upstream (so future git push works without specifying branch).
+Pushes your branch to remote
+Links your local branch (main) with remote branch (origin/main)
+origin = remote repo name
+-u = set upstream (link local ↔ remote branch)
