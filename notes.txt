@@ -166,3 +166,4 @@ Pushes your branch to remote
 Links your local branch (main) with remote branch (origin/main)
 origin = remote repo name
 -u = set upstream (link local ↔ remote branch)
+git clone <repo link>
